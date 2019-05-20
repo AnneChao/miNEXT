@@ -53,8 +53,8 @@ Incidence <- function(data, allpts = FALSE, size = NULL, knots = 20, nboots = 0)
     nT2 <- data[1,2]
     datap = data[-1,]
 
-    p1_est = boot_p(data[,1])
-    p2_est = boot_p(data[,2])
+    p1_est = boot_p_inc(data[,1])
+    p2_est = boot_p_inc(data[,2])
     # p1_est = c(DetInc(data[,1],zero = T),UndInc(data[,1]))
     # p2_est = c(DetInc(data[,2],zero = T),UndInc(data[,2]))
     datap[,1]<-p1_est[1:nrow(datap)]
@@ -120,7 +120,7 @@ Incidence <- function(data, allpts = FALSE, size = NULL, knots = 20, nboots = 0)
     esti
   }
 }
-                        
+
 #' Inci(data, allpts = FALSE, size = NULL, knots = 20 ) for incidence data, comupute composite diversity of any sample and species composition (shared and unique species)
 #' @param data a Sx2 dataframe, the intact assemblage (main) assemblage should be the first column.
 #' @param allpts specifying whether to compute all combinations of sampling units of two assemblages. Default is FALSE.
@@ -297,6 +297,6 @@ Inci <- function(data, allpts = FALSE, size = NULL, knots = 20 ){
 # (2). Example
 #
 ####################################################################################
-bird = read.table("bird.txt")
+bird = read.table("Bird_Incidence_Data.txt")
 result_inci_bird = Incidence(bird, knots = 10, nboots = 50)
 multi.plot(data = bird, ans1 = result_inci_bird, type = "incidence")

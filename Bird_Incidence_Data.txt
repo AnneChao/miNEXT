@@ -1,5 +1,5 @@
 "forest" "logged"
-"t" 18 16
+"T" 18 16
 "Amsel" 5 0
 "Buchfink" 17 10
 "Buntspecht" 3 0

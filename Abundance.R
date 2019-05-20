@@ -305,7 +305,7 @@ Abun <- function(data1, knots = 10, size = NULL){
 # (2). Example
 #
 ####################################################################################
-spider = read.table("spider.txt")
+spider = read.table("Spider_Abundance_Data.txt")
 result_abun_spider = Abundance(data=spider, knots = 10)
 
 multi.plot(data = spider, ans1 = result_abun_spider, type = "abundance")
