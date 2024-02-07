@@ -96,7 +96,7 @@ Abun <- function(data1, knots = 10, size = NULL){
       m2 = round(seq(0, (n1), length.out = knots))
       m1 = n1 - m2
       m = cbind(m1, m2)
-      m2 = round(seq(0, (n2), length.out = knots))
+      # m2 = round(seq(0, (n2), length.out = knots))   # 2024/02/07 modify
     }else{
       m2 = round(c(seq(0, n2, length.out = knots),
                    seq(n2, (n1), length.out = knots)))
@@ -111,7 +111,8 @@ Abun <- function(data1, knots = 10, size = NULL){
       m = cbind(m1, m2)
     }else{
       m1 = round(seq(0, (n2), length.out = knots))
-      m2 = m2 - m1 
+      # m2 = m2 - m1 
+      m2 = n2 - m1         # 2024/02/07 modify
       m = cbind(m1, m2)
       m1 = round(seq(0, (n2), length.out = knots))
     }
@@ -163,7 +164,8 @@ Abun <- function(data1, knots = 10, size = NULL){
   # h0_2_ext_new<-Dq0_2_ext_new(x1,x2,0,p2_hat,n1,n2,mmext)
   q0_2_ext<-q0_2_ext+h0_2_ext_cpp
   
-  q0_2<-c(q0_2_in,q0_2_ext)
+  # q0_2<-c(q0_2_in,q0_2_ext)
+  if (length(m2tmp) >= 1) q0_2<-c(q0_2_in,q0_2_ext) else q0_2<-q0_2_in   # 2024/02/07 modify
   
   #q1_2
   mm<-cbind(0,n2)
@@ -174,7 +176,8 @@ Abun <- function(data1, knots = 10, size = NULL){
 #  print(paste("start  q1_2_ext",Sys.time())) 
   h1_2_ext = Dq1_ext(x1,x2,p1_hat,p2_hat,n1,n2,mmext)
   q1_2_ext<-q1_2_ext*h1_2_ext
-  q1_2<-c(q1_2_in,q1_2_ext)
+  # q1_2<-c(q1_2_in,q1_2_ext)
+  if (length(m2tmp) >= 1) q1_2<-c(q1_2_in,q1_2_ext) else q1_2<-q1_2_in   # 2024/02/07 modify
   
   #q=2 in and ext using same formular
   mm<-cbind(0,m2)

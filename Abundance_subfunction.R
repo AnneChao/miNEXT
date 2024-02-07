@@ -209,8 +209,11 @@ Abun_CreatBootstrapSample <- function(data, nboots = 0){
     
     data_boot <- list() 
     for(k in 1:nboots){
-      fill1 <- sample(x = zero1,size = length(undetec1), replace = F)
-      fill2 <- sample(x = zero2,size = length(undetec2), replace = F)
+      # fill1 <- sample(x = zero1,size = length(undetec1), replace = F)
+      # fill2 <- sample(x = zero2,size = length(undetec2), replace = F)
+      if (length(zero1) >= 1) fill1 <- sample(x = zero1,size = length(undetec1), replace = F) else fill1 <- NULL   ## 2024/02/07 modify
+      if (length(zero2) >= 1) fill2 <- sample(x = zero2,size = length(undetec2), replace = F) else fill2 <- NULL   ## 2024/02/07 modify
+      
       data_pboot <- data_p 
       data_pboot[fill1,1] <- undetec1
       data_pboot[fill2,2] <- undetec2
@@ -223,8 +226,11 @@ Abun_CreatBootstrapSample <- function(data, nboots = 0){
       tmp <- sum(bootx1>0) > sum(bootx2>0)
       tmp2 <- ((bootx1==0) & (bootx1>0)) %>% sum 
       while( (tmp==F) | tmp2==0 ){
-        fill1 <- sample(x = zero1,size = length(undetec1), replace = F)
-        fill2 <- sample(x = zero2,size = length(undetec2), replace = F)
+        # fill1 <- sample(x = zero1,size = length(undetec1), replace = F)
+        # fill2 <- sample(x = zero2,size = length(undetec2), replace = F)
+        if (length(zero1) >= 1) fill1 <- sample(x = zero1,size = length(undetec1), replace = F) else fill1 <- NULL   ## 2024/02/07 modify
+        if (length(zero2) >= 1) fill2 <- sample(x = zero2,size = length(undetec2), replace = F) else fill2 <- NULL   ## 2024/02/07 modify
+        
         data_pboot <- data_p 
         data_pboot[fill1,1] <- undetec1
         data_pboot[fill2,2] <- undetec2
